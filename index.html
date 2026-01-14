@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>劉品姸 Icey Liu - 商業設計師</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.about-active {
+            background-color: #a5caf2;
+            min-height: 100vh;
+        }
+
+        body.future-active {
+            background: linear-gradient(to bottom, #a5caf2 0%, #7db3e8 30%, #5a9dd6 60%, #367eba 100%);
+            min-height: 100vh;
+        }
+
+        body.about-page {
+            background: linear-gradient(135deg, #f5f5f0 0%, #e8e8e3 50%, #f5f5f0 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body.about-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 200, 150, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(200, 220, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .nav-links a:hover {
+            color: #0066CC;
+            border-bottom-color: #0066CC;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 8rem 4rem 4rem;
+            text-align: left;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            background-image: url('../hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out forwards;
+            color: #0066CC;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.3s forwards;
+            color: #ffffff;
+        }
+
+        .hero .tagline {
+            font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.6s forwards;
+            color: #ffffff;
+        }
+
+        .hero .description {
+            font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+            font-weight: 300;
+            max-width: 700px;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.9s forwards;
+            color: #a2c4e8;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        #future .section-title {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.1s forwards;
+            font-weight: 700;
+            color: #a2c4e8;
+        }
+
+        /* Works Section */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Section Navigation Links */
+        .section-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding: 2rem 0;
+        }
+
+        .section-nav-links a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: opacity 0.3s;
+            padding: 0.5rem 1rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .section-nav-links a:hover {
+            opacity: 0.6;
+            border-bottom-color: #ea580c;
+        }
+
+        /* Home Works Grid */
+        .home-works {
+            padding: 6rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .home-works-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .home-works-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home-works-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .work-item {
+            cursor: pointer;
+            transition: opacity 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-item:hover {
+            opacity: 0.7;
+        }
+
+        .work-item img,
+        .work-item .work-placeholder {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .work-item .work-placeholder {
+            background: #f0f0f0;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            max-width: 1200px;
+            width: 90%;
+            max-height: 90vh;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 3rem;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            opacity: 0.6;
+        }
+
+        .modal-image-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-image-placeholder {
+            width: 100%;
+            min-height: 400px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .modal-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-text h3 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .modal-text .project-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-text .project-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            color: #333;
+        }
+
+        .modal-text .project-description p {
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 2rem;
+            }
+
+            .modal-text h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* About Section - Paper Style */
+        .about-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            background-color: #a5caf2;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .about-paper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                0 2px 8px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 3rem;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .about-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.8) 20%, 
+                rgba(255, 255, 255, 0.8) 80%, 
+                transparent
+            );
+            pointer-events: none;
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 35% 65%;
+            align-items: stretch;
+        }
+
+        .about-left-column {
+            background: rgba(243, 244, 246, 0.95);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 2.5rem 2rem;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px 0 0 10px;
+            min-height: 100%;
+        }
+
+        .about-right-column {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem 2.5rem;
+            border-radius: 0 10px 10px 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .about-i-am {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #a2c4e8;
+            text-align: left;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            padding-top: 0.5rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.1s forwards;
+        }
+
+        .about-profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.2s forwards;
+        }
+
+        .about-name {
+            font-size: 3rem !important;
+            font-weight: 700 !important;
+            color: #a2c4e8 !important;
+            text-align: right;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.3s forwards;
+        }
+
+        .about-intro {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #333;
+            text-align: left;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.4s forwards;
+        }
+
+        .about-intro strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .about-skills-section {
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .about-skills-section:nth-of-type(1) {
+            animation-delay: 0.5s;
+        }
+
+        .about-skills-section:nth-of-type(2) {
+            animation-delay: 0.6s;
+        }
+
+        .about-skills-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #0066CC;
+        }
+
+        .about-skills-list {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .about-language-list {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: #666;
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .about-language-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #333;
+            background: transparent;
+            flex-shrink: 0;
+        }
+
+        .language-level {
+            font-size: 0.7rem;
+            color: #666;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .about-contact {
+            margin-top: auto;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.7s forwards;
+        }
+
+        .about-contact-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #0066CC;
+        }
+
+        .about-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-contact-item svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            stroke: #666;
+        }
+
+        .about-right-section {
+            margin-bottom: 2.5rem;
+            flex: 1;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .about-right-section:nth-of-type(1) {
+            animation-delay: 0.3s;
+        }
+
+        .about-right-section:nth-of-type(2) {
+            animation-delay: 0.5s;
+        }
+
+        .about-right-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-right-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0066CC;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #0066CC;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .about-right-section:nth-of-type(1) .about-right-title {
+            animation-delay: 0.3s;
+        }
+
+        .about-right-section:nth-of-type(2) .about-right-title {
+            animation-delay: 0.5s;
+        }
+
+        .about-right-content {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #333;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .about-right-section:nth-of-type(1) .about-right-content {
+            animation-delay: 0.4s;
+        }
+
+        .about-right-section:nth-of-type(2) .about-right-content {
+            animation-delay: 0.6s;
+        }
+
+        .about-right-content strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .about-right-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .about-right-content .meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-right-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .about-right-content li {
+            margin-bottom: 0.4rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .about-right-content li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #666;
+        }
+
+        /* Snow Effect for About Section */
+        #about.section-content.active .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.8),
+                0 0 10px rgba(255, 255, 255, 0.6),
+                0 0 15px rgba(255, 255, 255, 0.4);
+            animation: snowfall linear infinite;
+            user-select: none;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) translateX(var(--drift)) rotate(180deg);
+            }
+            100% {
+                transform: translateY(100vh) translateX(calc(var(--drift) * 2)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Future Section Snow Effect */
+        #future.section-content.active .future-snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .future-snowflake {
+            position: absolute;
+            top: -20px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.9),
+                0 0 15px rgba(255, 255, 255, 0.7),
+                0 0 20px rgba(255, 255, 255, 0.5);
+            animation: futureSnowfall linear infinite;
+            user-select: none;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        @keyframes futureSnowfall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) translateX(var(--drift)) rotate(180deg);
+            }
+            90% {
+                transform: translateY(calc(100vh - 100px)) translateX(calc(var(--drift) * 2)) rotate(360deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh - 80px)) translateX(calc(var(--drift) * 2)) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+
+        .snow-accumulation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, 
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0.98) 5%,
+                rgba(255, 255, 255, 0.92) 15%,
+                rgba(255, 255, 255, 0.8) 30%,
+                rgba(255, 255, 255, 0.65) 50%,
+                rgba(255, 255, 255, 0.45) 70%,
+                rgba(255, 255, 255, 0.25) 85%,
+                rgba(255, 255, 255, 0.1) 95%,
+                transparent 100%
+            );
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+            clip-path: polygon(
+                0% 100%,
+                5% 95%,
+                12% 92%,
+                20% 88%,
+                28% 85%,
+                35% 82%,
+                42% 80%,
+                50% 78%,
+                58% 80%,
+                65% 82%,
+                72% 85%,
+                80% 88%,
+                88% 92%,
+                95% 95%,
+                100% 100%
+            );
+            box-shadow: 
+                0 -8px 30px rgba(255, 255, 255, 0.2),
+                inset 0 15px 40px rgba(255, 255, 255, 0.3);
+            filter: blur(1px);
+        }
+
+        #future.section-content.active .snow-accumulation {
+            display: block;
+        }
+
+        /* Future Section - Timeline Style */
+        .future-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            background: linear-gradient(to bottom, #a5caf2 0%, #7db3e8 30%, #5a9dd6 60%, #367eba 100%);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+
+        .future-paper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                0 2px 8px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 3rem;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .future-timeline-container {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        .timeline {
+            position: relative;
+            background: rgba(243, 244, 246, 0.5);
+            padding: 0;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            min-width: 0;
+            overflow: hidden;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        .timeline:nth-child(1) .timeline-title {
+            animation-delay: 0.2s;
+        }
+
+        .timeline:nth-child(1) .timeline-item h4 {
+            animation-delay: 0.3s;
+        }
+
+        .timeline:nth-child(1) .timeline-item-content {
+            animation-delay: 0.4s;
+        }
+
+        .timeline:nth-child(2) .timeline-title {
+            animation-delay: 0.5s;
+        }
+
+        .timeline:nth-child(2) .timeline-item h4 {
+            animation-delay: 0.6s;
+        }
+
+        .timeline:nth-child(2) .timeline-item-content {
+            animation-delay: 0.7s;
+        }
+
+        .timeline:nth-child(3) .timeline-title {
+            animation-delay: 0.8s;
+        }
+
+        .timeline:nth-child(3) .timeline-item h4 {
+            animation-delay: 0.9s;
+        }
+
+        .timeline:nth-child(3) .timeline-item-content {
+            animation-delay: 1s;
+        }
+
+        .timeline-images-container {
+            width: 200px;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .timeline:nth-child(2) .timeline-images-container,
+        .timeline:nth-child(3) .timeline-images-container {
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .timeline-image-wrapper {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            flex-shrink: 0;
+        }
+
+        .timeline-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .timeline-image {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.1s forwards;
+        }
+
+        .timeline-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0066CC;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: left;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #0066CC;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .timeline-item {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0066CC;
+            margin-bottom: 0.4rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .timeline-item-content {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #4b5563;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.4s forwards;
+        }
+
+        .timeline-item-content strong {
+            color: #0066CC;
+            font-weight: 600;
+        }
+
+        .timeline-item-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-item-content li {
+            margin-bottom: 0.4rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .timeline-item-content li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #0066CC;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .future-timeline-container {
+                flex-direction: column !important;
+                gap: 2rem;
+            }
+
+            .timeline {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .timeline-images-container {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .timeline-image-wrapper {
+                width: 100%;
+                min-width: 100%;
+                height: 150px;
+                min-height: 150px;
+            }
+
+            .timeline-image,
+            .timeline-image-placeholder {
+                width: 100%;
+                min-width: 100%;
+                height: 150px;
+                min-height: 150px;
+            }
+
+            .section-nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .about-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .about-left-column {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .about-right-column {
+                border-radius: 0 0 10px 10px;
+            }
+        }
+
+        .about-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+
+        .skill-category h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .skill-list {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+            color: #666;
+        }
+
+        .work-experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .work-item-about {
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 2rem;
+        }
+
+        .work-item-about:last-child {
+            border-bottom: none;
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .work-company {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .work-position {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .work-date {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 300;
+            white-space: nowrap;
+        }
+
+        .work-description {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-top: 1rem;
+        }
+
+        .work-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .work-description li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .work-description li:before {
+            content: "*";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Resume Section */
+        .resume-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .resume-sidebar {
+            background: #f5f5f5;
+            padding: 2rem;
+        }
+
+        .resume-sidebar h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .resume-sidebar .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 2rem;
+        }
+
+        .resume-sidebar .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .resume-sidebar .contact-info p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-main h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .resume-main h3:first-child {
+            margin-top: 0;
+        }
+
+        .resume-main .experience-item,
+        .resume-main .education-item {
+            margin-bottom: 2rem;
+        }
+
+        .resume-main .experience-item h4,
+        .resume-main .education-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-main .experience-item .meta,
+        .resume-main .education-item .meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-main .experience-item ul,
+        .resume-main .education-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resume-main .experience-item li,
+        .resume-main .education-item li {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .resume-main .experience-item li:before,
+        .resume-main .education-item li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .hero {
+                padding: 8rem 2rem 4rem;
+            }
+
+            .home-works {
+                padding: 4rem 2rem;
+            }
+
+            .about-content,
+            .resume-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .about-i-am,
+            .about-name {
+                font-size: 2rem;
+            }
+
+            .about-profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .work-header {
+                flex-direction: column;
+            }
+
+            .work-date {
+                white-space: normal;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide sections by default */
+        .section-content {
+            display: none !important;
+            min-height: 100vh;
+        }
+
+        .section-content.active {
+            display: block !important;
+        }
+
+        #about.section-content.active {
+            background-color: #a5caf2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><a href="#" style="text-decoration: none; color: inherit;">ICEY LIU</a></div>
+        <ul class="nav-links">
+            <li><a href="#works">Works</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#future">Future</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>HELLO,<br>I'm Icey Liu.</h1>
+        <p class="subtitle">Graphic/ UIUX designer</p>
+        <p class="tagline">Making experience better through meaningful and authentic design.</p>
+        <p class="description">
+            目前就讀於臺灣科技大學設計系，具備商業設計與影像媒體跨領域背景，在學期間深耕透過 AI 驅動數據洞察與自動化工作流，重構品牌核心競爭力。現以基隆老店第四代身份，致力於將體驗戰略與AI導入傳產轉型，憑藉跨世代溝通的專長引導共識，正在實現文化傳承到智能轉型的品牌復興。
+        </p>
+    </section>
+
+    <!-- Home Works Grid - Hidden by default -->
+    <section id="home-works" class="home-works" style="display: none;">
+        <h2 class="section-title">Works</h2>
+        <div class="home-works-grid">
+            <div class="work-item" data-work="1">
+                <div class="work-placeholder">作品 1</div>
+            </div>
+            <div class="work-item" data-work="2">
+                <div class="work-placeholder">作品 2</div>
+            </div>
+            <div class="work-item" data-work="3">
+                <div class="work-placeholder">作品 3</div>
+            </div>
+            <div class="work-item" data-work="4">
+                <div class="work-placeholder">作品 4</div>
+            </div>
+            <div class="work-item" data-work="5">
+                <div class="work-placeholder">作品 5</div>
+            </div>
+            <div class="work-item" data-work="6">
+                <div class="work-placeholder">作品 6</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section id="works" class="section-content">
+        <h2 class="section-title">Works</h2>
+        <div class="works-grid">
+            <div class="work-item" data-work="1">
+                <div class="work-placeholder">作品 1</div>
+            </div>
+            <div class="work-item" data-work="2">
+                <div class="work-placeholder">作品 2</div>
+            </div>
+            <div class="work-item" data-work="3">
+                <div class="work-placeholder">作品 3</div>
+            </div>
+            <div class="work-item" data-work="4">
+                <div class="work-placeholder">作品 4</div>
+            </div>
+            <div class="work-item" data-work="5">
+                <div class="work-placeholder">作品 5</div>
+            </div>
+            <div class="work-item" data-work="6">
+                <div class="work-placeholder">作品 6</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="workModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-image-container">
+                <img id="modalImage" class="modal-image" src="" alt="Project Image" style="display: none;">
+                <div id="modalImagePlaceholder" class="modal-image-placeholder">專案圖片</div>
+            </div>
+            <div class="modal-text">
+                <h3 id="modalTitle">專案標題</h3>
+                <div class="project-meta" id="modalMeta">專案類型 / 年份</div>
+                <div class="project-description" id="modalDescription">
+                    <p>這裡是專案的詳細描述。您可以修改這個內容來描述您的專案。</p>
+                    <p>描述專案的背景、目標、設計過程和成果。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="section-content">
+        <div class="about-section" id="aboutSection">
+            <!-- Snow Container -->
+            <div class="snow-container" id="snowContainer"></div>
+            <div class="about-paper">
+                <div class="about-layout">
+                    <!-- Left Column: Grey Background -->
+                    <div class="about-left-column">
+                        <!-- I'M Text -->
+                        <div class="about-i-am">I'M</div>
+                        
+                        <!-- Profile Picture -->
+                        <img 
+                            src="../profile-photo.png" 
+                            alt="劉品姸 Icey Liu"
+                            class="about-profile-img"
+                            onerror="this.src='https://via.placeholder.com/200/f3f4f6/6b7280?text=Photo'"
+                        >
+                        
+                        <!-- Name Text -->
+                        <div class="about-name">ICEY</div>
+                        
+                        <!-- Self Introduction -->
+                        <div class="about-intro">
+                            目前就讀於<strong>臺灣科技大學設計系</strong>，具備<strong>商業設計</strong>與<strong>影像媒體</strong>跨領域背景，在學期間深耕透過 AI 驅動數據洞察與自動化工作流，重構品牌核心競爭力。<br><br>
+                            現以<strong>基隆老店第四代</strong>身份，致力於將體驗戰略與AI導入傳產轉型，憑藉跨世代溝通的專長引導共識，正在實現文化傳承到智能轉型的品牌復興。
+                        </div>
+                        
+                        <!-- Language Proficiency -->
+                        <div class="about-skills-section">
+                            <div class="about-skills-title">語言能力｜Language Proficiency</div>
+                            <div class="about-language-list">
+                                <div class="about-language-item">
+                                    <div class="language-circle">英文</div>
+                                    <div class="language-level">IELTS 6.0</div>
+                                </div>
+                                <div class="about-language-item">
+                                    <div class="language-circle">日文</div>
+                                    <div class="language-level">N4</div>
+                                </div>
+                                <div class="about-language-item">
+                                    <div class="language-circle">韓文</div>
+                                    <div class="language-level">TOPIK II 3級</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skills -->
+                        <div class="about-skills-section">
+                            <div class="about-skills-title">專業技能 | Skills</div>
+                            <div class="about-skills-list">
+                                Illustrator, Photoshop, Indesign, After Effects, Premiere, Lightroom, Figma
+                            </div>
+                        </div>
+                        
+                        <!-- Contact -->
+                        <div class="about-contact">
+                            <div class="about-contact-title">聯絡資訊 | Contact</div>
+                            <div class="about-contact-item">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>iceyen37@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: White Background -->
+                    <div class="about-right-column">
+                        <!-- Work Experience -->
+                        <div class="about-right-section">
+                            <h3 class="about-right-title">工作經驗｜Work Experience</h3>
+                            <div class="about-right-content">
+                                <h4>視覺剪輯師</h4>
+                                <div class="meta">理財週刊 | 2023.07 - 2024.12</div>
+                                <ul>
+                                    <li>理周FUN生活 YouTube 頻道視覺設計、影片拍攝、剪輯</li>
+                                    <li>理周FUN生活 Podcast 節目經營、剪輯後製</li>
+                                    <li>陳秀芳、張大文分析師 頻道視覺設計、拍攝、剪輯</li>
+                                </ul>
+                            </div>
+                            <div class="about-right-content" style="margin-top: 1.5rem;">
+                                <h4>影片剪輯師</h4>
+                                <div class="meta">Playground Wedding 美式婚禮動態 / 平面攝影團隊 | 2022.09 - 2023.05</div>
+                                <ul>
+                                    <li>婚禮全記錄剪輯</li>
+                                    <li>婚紗側錄剪輯、預告片剪輯</li>
+                                    <li>廣告商業影片剪輯</li>
+                                </ul>
+                            </div>
+                            <div class="about-right-content" style="margin-top: 1.5rem;">
+                                <h4>UI / UX 設計實習生</h4>
+                                <div class="meta">MING ISLAND BRANDING 品牌顧問公司 | 2021.06 - 2021.09</div>
+                                <ul>
+                                    <li>Kymco 三陽機車 網頁協助製作</li>
+                                    <li>銘導品牌顧問公司 官網協助製作</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Education -->
+                        <div class="about-right-section">
+                            <h3 class="about-right-title">在學經歷｜Education</h3>
+                            <div class="about-right-content">
+                                <h4>臺灣科技大學</h4>
+                                <div class="meta">商業設計系 | 2025 - 至今</div>
+                                <ul>
+                                    <li>2025 青年社區參與行動2.0 Changemaker計畫 Actor組 金獎</li>
+                                </ul>
+                            </div>
+                            <div class="about-right-content" style="margin-top: 1.5rem;">
+                                <h4>銘傳大學</h4>
+                                <div class="meta">商業設計系 | 2018 - 2022</div>
+                                <ul>
+                                    <li>2022 放視大賞 平面類傳達設計組 入圍</li>
+                                    <li>2022 新一代設計展 平面類傳達設計組 入圍</li>
+                                </ul>
+                            </div>
+                        </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section id="future" class="section-content">
+        <div class="future-section" id="futureSection">
+            <!-- Snow Container for Future -->
+            <div class="future-snow-container" id="futureSnowContainer"></div>
+            <!-- Snow Accumulation at Bottom -->
+            <div class="snow-accumulation"></div>
+            <div class="future-paper">
+                <h2 class="section-title">Goals</h2>
+                
+                <div class="future-timeline-container">
+                    <!-- Timeline 1: 任務指標 -->
+                    <div class="timeline">
+                        <div class="timeline-images-container">
+                            <div class="timeline-image-wrapper">
+                                <img src="../future-1.jpg" alt="任務指標" class="timeline-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="timeline-image-placeholder" style="display: none;">任務指標圖片</div>
+                            </div>
+                            <div class="timeline-image-wrapper">
+                                <img src="../IMG_1706.JPG" alt="任務指標2" class="timeline-image" onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">任務指標</h3>
+                            
+                            <div class="timeline-item">
+                                <h4>資源累積</h4>
+                                <div class="timeline-item-content">
+                                <ul>
+                                    <li><strong>獎金轉投資：</strong> 將 Changemaker 的 25 萬獎金進行資金配置（40%投入專案執行、30%作為社創備用金、30%個人進修）</li>
+                                </ul>
+                            </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4>專業影響力</h4>
+                                <div class="timeline-item-content">
+                                <ul>
+                                    <li><strong>個人品牌聲量：</strong> 進行至少 2 場受邀分享，將金獎行動者的標籤深化為社會設計專家</li>
+                                    <li><strong>作品集完整度：</strong> 在 2026 年底前，將金獎計畫轉化為 1 篇深度體驗戰略 Case Study</li>
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    <!-- Timeline 2: 策略指標 -->
+                    <div class="timeline">
+                        <div class="timeline-images-container">
+                            <div class="timeline-image-wrapper">
+                                <img src="../future-2.jpg" alt="策略指標" class="timeline-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="timeline-image-placeholder" style="display: none;">策略指標圖片</div>
+                            </div>
+                            <div class="timeline-image-wrapper">
+                                <img src="../IMG_4230.JPG" alt="策略指標2" class="timeline-image" onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">策略指標</h3>
+                            
+                            <div class="timeline-item">
+                                <h4>整體策略目標</h4>
+                                <div class="timeline-item-content">
+                                <ul>
+                                    <li><strong>品牌資產重構：</strong>推動家業從在地小吃轉型為飲食文化品牌，透過體驗設計強化正宗傳承的品牌定位</li>
+                                    <li><strong>營運體系現代化：</strong>導入數位思維優化內外場流程，達成<strong>體驗可複製化</strong>，建立能應對規模擴張的經營體質</li>
+                                </ul>
+                            </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4>專業發展重點</h4>
+                                <div class="timeline-item-content">
+                                <ul>
+                                    <li><strong>跨世代共識引導：</strong>深耕引導技術與體驗工具，建立跨世代合作語言，降低傳統家族轉型阻力</li>
+                                    <li><strong>數據驅動的體驗決策：</strong>建構老店數位數據路徑（如會員、點餐行為），將老客戶的經驗轉化為精準營運與行銷數據</li>
+                                    <li><strong>傳統產業轉型模型建構：</strong>以數據驗證轉型路徑，精準導入AI科技介入，同時維護家族傳承底蘊</li>
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    <!-- Timeline 3: 個人發展計畫 -->
+                    <div class="timeline">
+                        <div class="timeline-images-container">
+                            <div class="timeline-image-wrapper">
+                                <img src="../future-3.jpg" alt="個人發展計畫" class="timeline-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="timeline-image-placeholder" style="display: none;">個人發展計畫圖片</div>
+                            </div>
+                            <div class="timeline-image-wrapper">
+                                <img src="../1596287513-dafebb1e8831c8abee1409950ef7a729.jpg" alt="個人發展計畫2" class="timeline-image" onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">個人發展計畫</h3>
+                            
+                            <div class="timeline-item">
+                                <h4>能力提升與刻意練習</h4>
+                                <div class="timeline-item-content">
+                                <ul>
+                                    <li><strong>流程標準化：</strong>繪製服務藍圖將隱性知識顯性化，設計兼具效率與人情味的數位優化方案</li>
+                                    <li><strong>品牌敘事：</strong>挖掘老店歷史轉化為品牌資產，將家族傳承底蘊轉化為新世代品牌論點</li>
+                                    <li><strong>跨世代利害關係人溝通：</strong>練習向上管理與傳統轉譯，利用商業指標說服長輩嘗試新技術，將轉型衝突轉化為共識</li>
+                                </ul>
+                            </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h4>職涯願景與發展行動</h4>
+                                <div class="timeline-item-content">
+                                <ul>
+                                    <li><strong>老店新生專案：</strong>啟動品牌升級計畫，透過店內體驗優化與數位工具導入，達成提升回訪率等具體目標</li>
+                                    <li><strong>知識體系建立：</strong>開發<strong>可複製的體驗審核清單</strong>，協助傳產老店在不破壞核心文化下進行數位升級</li>
+                                    <li><strong>在地文化連結：</strong>強化視覺設計，讓老店成為全臺知名的飲食文化指標據點</li>
+                                </ul>
+                            </div>
+                        </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section-content">
+        <h2 class="section-title">Resume</h2>
+        <div class="resume-content">
+            <div class="resume-sidebar">
+                <img src="images/profile-photo.png" alt="劉品姸 Icey Liu" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+                <div class="contact-info">
+                    <h3>聯絡資訊</h3>
+                    <p>電話：+886 987 837 654</p>
+                    <p>Email：iceyen37@gmail.com</p>
+                    <p>Behance：<br>https://www.behance.net/gallery/146659483/Icey-liu</p>
+                    <p>地址：三重市, 新北市, 臺灣</p>
+                </div>
+                <div>
+                    <h3>語言能力</h3>
+                    <p>英文：IELTS 6.0</p>
+                    <p>日文：N4</p>
+                    <p>韓文：TOPIK II 3級</p>
+                </div>
+            </div>
+            <div class="resume-main">
+                <h3>工作經驗</h3>
+                <div class="experience-item">
+                    <h4>視覺剪輯師</h4>
+                    <p class="meta"><strong>理財週刊 | 2023.07 - 2024.12</strong></p>
+                    <ul>
+                        <li>理周FUN生活 YouTube 頻道視覺設計、影片拍攝、剪輯</li>
+                        <li>理周FUN生活 Podcast 節目經營、剪輯後製</li>
+                        <li>陳秀芳、張大文分析師 頻道視覺設計、拍攝、剪輯</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>影片剪輯師</h4>
+                    <p class="meta"><strong>Playground Wedding 美式婚禮動態 / 平面攝影團隊 | 2022.09 - 2023.05</strong></p>
+                    <ul>
+                        <li>婚禮全記錄剪輯</li>
+                        <li>婚紗側錄剪輯、預告片剪輯</li>
+                        <li>廣告商業影片剪輯</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>UI / UX 設計實習生</h4>
+                    <p class="meta"><strong>MING ISLAND BRANDING 品牌顧問公司 | 2021.06 - 2021.09</strong></p>
+                    <ul>
+                        <li>Kymco 三陽機車 網頁協助製作</li>
+                        <li>銘導品牌顧問公司 官網協助製作</li>
+                    </ul>
+                </div>
+
+                <h3>學歷</h3>
+                <div class="education-item">
+                    <h4>臺灣科技大學</h4>
+                    <p class="meta"><strong>商業設計系 | 2025 - 至今</strong></p>
+                    <ul>
+                        <li>2025 青年社區參與行動2.0 Changemaker計畫 Actor組 金獎</li>
+                    </ul>
+                </div>
+                <div class="education-item">
+                    <h4>銘傳大學</h4>
+                    <p class="meta"><strong>商業設計系 | 2018 - 2022</strong></p>
+                    <ul>
+                        <li>2022 放視大賞 平面類傳達設計組 入圍</li>
+                        <li>2022 新一代設計展 平面類傳達設計組 入圍</li>
+                    </ul>
+                </div>
+
+                <h3>任務指標</h3>
+                <div class="experience-item">
+                    <h4>資源累積</h4>
+                    <ul>
+                        <li><strong>獎金轉投資：</strong> 將 Changemaker 的 25 萬獎金進行資金配置（40%投入專案執行、30%作為社創備用金、30%個人進修）</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>專業影響力</h4>
+                    <ul>
+                        <li><strong>個人品牌聲量：</strong> 進行至少 2 場受邀分享，將金獎行動者的標籤深化為社會設計專家</li>
+                        <li><strong>作品集完整度：</strong> 在 2026 年底前，將金獎計畫轉化為 1 篇深度體驗戰略 Case Study</li>
+                    </ul>
+                </div>
+
+                <h3>策略指標</h3>
+                <div class="experience-item">
+                    <h4>整體策略目標</h4>
+                    <ul>
+                        <li><strong>品牌資產重構：</strong>推動家業從在地小吃轉型為飲食文化品牌，透過體驗設計強化正宗傳承的品牌定位</li>
+                        <li><strong>營運體系現代化：</strong>導入數位思維優化內外場流程，達成<strong>體驗可複製化</strong>，建立能應對規模擴張的經營體質</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>專業發展重點</h4>
+                    <ul>
+                        <li><strong>跨世代共識引導：</strong>深耕引導技術與體驗工具，建立跨世代合作語言，降低傳統家族轉型阻力</li>
+                        <li><strong>數據驅動的體驗決策：</strong>建構老店數位數據路徑（如會員、點餐行為），將老客戶的經驗轉化為精準營運與行銷數據</li>
+                        <li><strong>傳統產業轉型模型建構：</strong>以數據驗證轉型路徑，精準導入AI科技介入，同時維護家族傳承底蘊</li>
+                    </ul>
+                </div>
+
+                <h3>個人發展計畫</h3>
+                <div class="experience-item">
+                    <h4>能力提升與刻意練習</h4>
+                    <ul>
+                        <li><strong>流程標準化：</strong>繪製服務藍圖將隱性知識顯性化，設計兼具效率與人情味的數位優化方案</li>
+                        <li><strong>品牌敘事：</strong>挖掘老店歷史轉化為品牌資產，將家族傳承底蘊轉化為新世代品牌論點</li>
+                        <li><strong>跨世代利害關係人溝通：</strong>練習向上管理與傳統轉譯，利用商業指標說服長輩嘗試新技術，將轉型衝突轉化為共識</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>職涯願景與發展行動</h4>
+                    <ul>
+                        <li><strong>老店新生專案：</strong>啟動品牌升級計畫，透過店內體驗優化與數位工具導入，達成提升回訪率等具體目標</li>
+                        <li><strong>知識體系建立：</strong>開發<strong>可複製的體驗審核清單</strong>，協助傳產老店在不破壞核心文化下進行數位升級</li>
+                        <li><strong>在地文化連結：</strong>強化視覺設計，讓老店成為全臺知名的飲食文化指標據點</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll and section navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // If clicking logo (empty hash or no target), go to home
+                if (!targetId || targetId === '') {
+                    // Show hero, hide all other sections
+                    const heroSection = document.querySelector('.hero');
+                    if (heroSection) {
+                        heroSection.style.display = 'flex';
+                    }
+                    
+                    const homeWorks = document.getElementById('home-works');
+                    if (homeWorks) {
+                        homeWorks.style.display = 'none';
+                    }
+                    
+                    // Hide all section-content sections (Works, About, Future, Resume)
+                    document.querySelectorAll('.section-content').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Remove about-active and future-active class from body
+                    document.body.classList.remove('about-active');
+                    document.body.classList.remove('future-active');
+                    
+                    // Update URL without hash
+                    window.history.pushState('', '', window.location.pathname);
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    // If it's a section-content (Works, About, Future pages)
+                    if (targetSection.classList.contains('section-content')) {
+                        // Hide hero section
+                        const heroSection = document.querySelector('.hero');
+                        if (heroSection) {
+                            heroSection.style.display = 'none';
+                        }
+                        
+                        // Hide home works section
+                        const homeWorks = document.getElementById('home-works');
+                        if (homeWorks) {
+                            homeWorks.style.display = 'none';
+                        }
+                        
+                        // Hide all section-content sections (including Future, Resume)
+                        document.querySelectorAll('.section-content').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        
+                        // Show only target section
+                        targetSection.classList.add('active');
+                        
+                        // Set body background for About and Future pages
+                        if (targetId === 'about') {
+                            document.body.classList.add('about-active');
+                            document.body.classList.remove('future-active');
+                        } else if (targetId === 'future') {
+                            document.body.classList.add('future-active');
+                            document.body.classList.remove('about-active');
+                    } else {
+                            document.body.classList.remove('about-active');
+                            document.body.classList.remove('future-active');
+                        }
+                        
+                        // Scroll to top of page first
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+                    } else {
+                        // For other sections (like home-works), show hero, hide all section-content
+                        const heroSection = document.querySelector('.hero');
+                        if (heroSection) {
+                            heroSection.style.display = 'flex';
+                        }
+                        
+                        const homeWorks = document.getElementById('home-works');
+                        if (homeWorks) {
+                            homeWorks.style.display = 'none';
+                        }
+                        
+                        // Hide all section-content sections (including Future)
+                        document.querySelectorAll('.section-content').forEach(section => {
+                            section.classList.remove('active');
+                        });
+                        
+                        // Scroll to top
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Show hero by default, hide other sections
+        document.querySelectorAll('.section-content').forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Hide home-works by default
+        const homeWorks = document.getElementById('home-works');
+        if (homeWorks) {
+            homeWorks.style.display = 'none';
+        }
+
+        // Check if there's a hash in the URL on page load
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            
+            // Hide all sections first
+            const heroSection = document.querySelector('.hero');
+            const homeWorks = document.getElementById('home-works');
+            const allSections = document.querySelectorAll('.section-content');
+            
+            // Hide all section-content sections
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            if (hash && (hash === 'works' || hash === 'about' || hash === 'future')) {
+                const targetSection = document.getElementById(hash);
+                if (targetSection && targetSection.classList.contains('section-content')) {
+                    // Hide hero section
+                    if (heroSection) {
+                        heroSection.style.display = 'none';
+                    }
+                    
+                    // Hide home works section
+                    if (homeWorks) {
+                        homeWorks.style.display = 'none';
+                    }
+                    
+                    // Show only target section
+                    targetSection.classList.add('active');
+                    
+                    // Set body background for About and Future pages
+                    if (hash === 'about') {
+                        document.body.classList.add('about-active');
+                        document.body.classList.remove('future-active');
+                    } else if (hash === 'future') {
+                        document.body.classList.add('future-active');
+                        document.body.classList.remove('about-active');
+                    } else {
+                        document.body.classList.remove('about-active');
+                        document.body.classList.remove('future-active');
+                    }
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                } else {
+                    // Invalid hash, show hero only
+                    if (heroSection) {
+                        heroSection.style.display = 'flex';
+                    }
+                    if (homeWorks) {
+                        homeWorks.style.display = 'none';
+                    }
+                }
+            } else {
+                // No hash or invalid hash, show hero only
+                if (heroSection) {
+                    heroSection.style.display = 'flex';
+                }
+                if (homeWorks) {
+                    homeWorks.style.display = 'none';
+                }
+            }
+        });
+
+        // Snow Effect for About Section
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❄';
+            
+            // Random size between 0.5em and 1.5em
+            const size = Math.random() * 1 + 0.5;
+            snowflake.style.fontSize = size + 'em';
+            
+            // Random starting position
+            snowflake.style.left = Math.random() * 100 + '%';
+            
+            // Random drift (horizontal movement)
+            const drift = (Math.random() - 0.5) * 150;
+            snowflake.style.setProperty('--drift', drift + 'px');
+            
+            // Random animation duration between 10s and 20s
+            const duration = Math.random() * 10 + 10;
+            snowflake.style.animationDuration = duration + 's';
+            
+            // Random delay (start from different positions)
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            
+            // Initial position from top
+            snowflake.style.top = '-20px';
+            
+            // Add shadow for depth
+            snowflake.style.filter = 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))';
+            
+            return snowflake;
+        }
+
+        let snowInterval = null;
+        
+        function initSnowEffect() {
+            const aboutSection = document.getElementById('aboutSection');
+            const snowContainer = document.getElementById('snowContainer');
+            const aboutPage = document.getElementById('about');
+            
+            if (!aboutSection || !snowContainer || !aboutPage) return;
+            
+            // Only run if About page is active
+            if (!aboutPage.classList.contains('active')) return;
+            
+            // Clear existing snowflakes and interval
+            snowContainer.innerHTML = '';
+            if (snowInterval) {
+                clearInterval(snowInterval);
+            }
+            
+            // Create initial snowflakes
+            const snowflakeCount = 80;
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = createSnowflake();
+                snowContainer.appendChild(snowflake);
+            }
+            
+            // Continuously add new snowflakes
+            snowInterval = setInterval(() => {
+                if (aboutPage.classList.contains('active')) {
+                    const snowflake = createSnowflake();
+                    snowContainer.appendChild(snowflake);
+                    
+                    // Remove snowflake after animation
+                    setTimeout(() => {
+                        if (snowflake.parentNode) {
+                            snowflake.parentNode.removeChild(snowflake);
+                        }
+                    }, 30000);
+                } else {
+                    clearInterval(snowInterval);
+                    snowInterval = null;
+                }
+            }, 300);
+        }
+
+        // Initialize snow effect when About section is shown
+        const snowObserver = new MutationObserver(() => {
+            const aboutSection = document.getElementById('aboutSection');
+            if (aboutSection && aboutSection.offsetParent !== null) {
+                initSnowEffect();
+            }
+        });
+
+        // Observe when About section becomes visible
+        window.addEventListener('load', () => {
+            const aboutSection = document.getElementById('aboutSection');
+            if (aboutSection) {
+                snowObserver.observe(aboutSection, { attributes: true, attributeFilter: ['class', 'style'] });
+                // Check if About is already visible
+                if (aboutSection.offsetParent !== null) {
+                    initSnowEffect();
+                }
+            }
+        });
+
+        // Also check when navigating to About
+        document.querySelectorAll('a[href="#about"]').forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(() => {
+                    initSnowEffect();
+                }, 200);
+            });
+        });
+
+        // Also trigger when section becomes active
+        const checkAboutVisibility = () => {
+            const aboutSection = document.getElementById('aboutSection');
+            if (aboutSection && aboutSection.offsetParent !== null) {
+                const snowContainer = document.getElementById('snowContainer');
+                if (snowContainer && snowContainer.children.length === 0) {
+                    initSnowEffect();
+                }
+            }
+        };
+
+        // Check periodically if About section is visible
+        setInterval(checkAboutVisibility, 1000);
+
+        // Snow Effect for Future Section
+        function createFutureSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'future-snowflake';
+            snowflake.innerHTML = '❄';
+            
+            // Random size between 0.6em and 1.8em (slightly larger)
+            const size = Math.random() * 1.2 + 0.6;
+            snowflake.style.fontSize = size + 'em';
+            
+            // Random starting position
+            snowflake.style.left = Math.random() * 100 + '%';
+            
+            // Random drift (horizontal movement)
+            const drift = (Math.random() - 0.5) * 200;
+            snowflake.style.setProperty('--drift', drift + 'px');
+            
+            // Random animation duration between 12s and 25s (slower)
+            const duration = Math.random() * 13 + 12;
+            snowflake.style.animationDuration = duration + 's';
+            
+            // Random delay
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            
+            // Initial position from top
+            snowflake.style.top = '-20px';
+            
+            // Add shadow for depth
+            snowflake.style.filter = 'drop-shadow(0 0 5px rgba(255, 255, 255, 0.9))';
+            
+            return snowflake;
+        }
+
+        let futureSnowInterval = null;
+        
+        function initFutureSnowEffect() {
+            const futureSection = document.getElementById('futureSection');
+            const futureSnowContainer = document.getElementById('futureSnowContainer');
+            const futurePage = document.getElementById('future');
+            
+            if (!futureSection || !futureSnowContainer || !futurePage) return;
+            
+            // Only run if Future page is active
+            if (!futurePage.classList.contains('active')) return;
+            
+            // Clear existing snowflakes and interval
+            futureSnowContainer.innerHTML = '';
+            if (futureSnowInterval) {
+                clearInterval(futureSnowInterval);
+            }
+            
+            // Create initial snowflakes
+            const snowflakeCount = 100;
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = createFutureSnowflake();
+                futureSnowContainer.appendChild(snowflake);
+            }
+            
+            // Continuously add new snowflakes
+            futureSnowInterval = setInterval(() => {
+                if (futurePage.classList.contains('active')) {
+                    const snowflake = createFutureSnowflake();
+                    futureSnowContainer.appendChild(snowflake);
+                    
+                    // Remove snowflake after animation
+                    setTimeout(() => {
+                        if (snowflake.parentNode) {
+                            snowflake.parentNode.removeChild(snowflake);
+                        }
+                    }, 35000);
+                } else {
+                    clearInterval(futureSnowInterval);
+                    futureSnowInterval = null;
+                }
+            }, 250);
+        }
+
+        // Check when Future section becomes visible
+        const checkFutureVisibility = () => {
+            const futurePage = document.getElementById('future');
+            if (futurePage && futurePage.classList.contains('active')) {
+                const futureSnowContainer = document.getElementById('futureSnowContainer');
+                if (futureSnowContainer && futureSnowContainer.children.length === 0) {
+                    initFutureSnowEffect();
+                }
+            }
+        };
+
+        // Check periodically if Future section is visible
+        setInterval(checkFutureVisibility, 1000);
+
+        // Also check when navigating to Future
+        document.querySelectorAll('a[href="#future"]').forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(() => {
+                    initFutureSnowEffect();
+                }, 200);
+            });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('workModal');
+        const workItems = document.querySelectorAll('.work-item');
+
+        // Open modal when clicking on work item
+        workItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const workId = this.getAttribute('data-work');
+                openModal(workId);
+            });
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function openModal(workId) {
+            // You can customize this data structure for each work
+            const workData = {
+                '1': {
+                    title: '專案標題 1',
+                    meta: '專案類型 / 2024',
+                    image: 'images/work1.jpg', // 您可以替換為實際圖片路徑
+                    description: '<p>這裡是專案 1 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                },
+                '2': {
+                    title: '專案標題 2',
+                    meta: '專案類型 / 2024',
+                    image: 'images/work2.jpg',
+                    description: '<p>這裡是專案 2 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                },
+                '3': {
+                    title: '專案標題 3',
+                    meta: '專案類型 / 2024',
+                    image: 'images/work3.jpg',
+                    description: '<p>這裡是專案 3 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                },
+                '4': {
+                    title: '專案標題 4',
+                    meta: '專案類型 / 2024',
+                    image: 'images/work4.jpg',
+                    description: '<p>這裡是專案 4 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                },
+                '5': {
+                    title: '專案標題 5',
+                    meta: '專案類型 / 2024',
+                    image: 'images/work5.jpg',
+                    description: '<p>這裡是專案 5 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                },
+                '6': {
+                    title: '專案標題 6',
+                    meta: '專案類型 / 2024',
+                    image: 'images/work6.jpg',
+                    description: '<p>這裡是專案 6 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                }
+            };
+
+            const data = workData[workId] || workData['1'];
+            
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalMeta').textContent = data.meta;
+            document.getElementById('modalDescription').innerHTML = data.description;
+            
+            const modalImage = document.getElementById('modalImage');
+            const modalPlaceholder = document.getElementById('modalImagePlaceholder');
+            
+            if (data.image) {
+                modalImage.src = data.image;
+                modalImage.onload = function() {
+                    modalImage.style.display = 'block';
+                    modalPlaceholder.style.display = 'none';
+                };
+                modalImage.onerror = function() {
+                    modalImage.style.display = 'none';
+                    modalPlaceholder.style.display = 'flex';
+                };
+            } else {
+                modalImage.style.display = 'none';
+                modalPlaceholder.style.display = 'flex';
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    </script>
+</body>
+</html>
