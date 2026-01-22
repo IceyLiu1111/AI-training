@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>劉品姸 Icey Liu - 商業設計師</title>
+    <title>PinYen Liu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,19 +16,38 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #ffffff;
-            color: #000000;
+            background: #f5f5f5;
+            color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
+        body.home-active {
+            background: #f5f5f5;
+        }
+
         body.about-active {
-            background-color: #a5caf2;
+            background: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: auto;
+        }
+
+        html.about-active {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: auto;
             min-height: 100vh;
         }
 
         body.future-active {
-            background: linear-gradient(to bottom, #a5caf2 0%, #7db3e8 30%, #5a9dd6 60%, #367eba 100%);
+            background: #ffffff;
+            min-height: 100vh;
+        }
+
+        body.works-active {
+            background: #f5f5f5;
             min-height: 100vh;
         }
 
@@ -67,6 +86,10 @@
             backdrop-filter: blur(10px);
         }
 
+        .logo a {
+            color: #194995 !important;
+        }
+
         .nav-links {
             display: flex;
             gap: 3rem;
@@ -101,11 +124,8 @@
             text-align: left;
             max-width: 1400px;
             margin: 0 auto;
+            background: #f5f5f5;
             position: relative;
-            background-image: url('../hero-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         .hero::before {
@@ -115,7 +135,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: transparent;
             z-index: 0;
         }
 
@@ -125,7 +145,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 8rem);
+            font-size: clamp(2rem, 5vw, 5rem);
             font-weight: 700;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
@@ -139,13 +159,14 @@
         .hero .subtitle {
             font-size: clamp(1rem, 2vw, 1.5rem);
             font-weight: 700;
+            margin-top: 2rem;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out 0.3s forwards;
-            color: #ffffff;
+            color: #333333;
         }
 
         .hero .tagline {
@@ -156,7 +177,7 @@
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out 0.6s forwards;
-            color: #ffffff;
+            color: #333333;
         }
 
         .hero .description {
@@ -167,7 +188,48 @@
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out 0.9s forwards;
-            color: #a2c4e8;
+            color: #666666;
+        }
+
+        .hero-feature-works {
+            position: absolute;
+            bottom: 2rem;
+            right: 4rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 2;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .hero-feature-works:hover {
+            opacity: 0.7;
+        }
+
+        .hero-feature-text {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #194995;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: bounceDown 2s ease-in-out infinite;
+        }
+
+        .hero-feature-arrow {
+            font-size: 1.2rem;
+            color: #194995;
+            animation: bounceDown 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceDown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
         }
 
         /* Animations */
@@ -202,20 +264,212 @@
             letter-spacing: 0.05em;
         }
 
+        #works .section-title {
+            display: none !important;
+        }
+
         #future .section-title {
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideInLeft 1s ease-out 0.1s forwards;
-            font-weight: 700;
-            color: #a2c4e8;
+            display: none !important;
         }
 
         /* Works Section */
+        #works.section-content {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+        }
+
+        #works.section-content.active {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+        }
+
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 2rem;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .works-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .works-grid .work-item:nth-child(1),
+        .home-works-grid .work-item:nth-child(1) {
+            grid-column: span 1;
+            aspect-ratio: 1;
+            max-height: 300px;
+            height: 300px !important;
+            min-height: 300px !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+
+        #works .work-item:nth-child(1)::after,
+        #home-works .work-item:nth-child(1)::after {
+            content: 'Package Design';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 2;
+            transition: background 0.3s ease, color 0.3s ease;
+            pointer-events: none;
+        }
+
+        #works .work-item:nth-child(1):hover::after,
+        #home-works .work-item:nth-child(1):hover::after {
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+        }
+
+        #works .work-item:nth-child(2)::after,
+        #home-works .work-item:nth-child(2)::after {
+            content: 'Product Design';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 2;
+            transition: background 0.3s ease, color 0.3s ease;
+            pointer-events: none;
+        }
+
+        #works .work-item:nth-child(2):hover::after,
+        #home-works .work-item:nth-child(2):hover::after {
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+        }
+
+        #works .work-item:nth-child(3)::after,
+        #home-works .work-item:nth-child(3)::after {
+            content: 'UI UX Design';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 2;
+            transition: background 0.3s ease, color 0.3s ease;
+            pointer-events: none;
+        }
+
+        #works .work-item:nth-child(3):hover::after,
+        #home-works .work-item:nth-child(3):hover::after {
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+        }
+
+        #works .work-item:nth-child(4)::after,
+        #home-works .work-item:nth-child(4)::after {
+            content: 'Short film';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 2;
+            transition: background 0.3s ease, color 0.3s ease;
+            pointer-events: none;
+        }
+
+        #works .work-item:nth-child(4):hover::after,
+        #home-works .work-item:nth-child(4):hover::after {
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+        }
+
+        #works .work-item:nth-child(5)::after,
+        #home-works .work-item:nth-child(5)::after {
+            content: 'Product Redesign';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 2;
+            transition: background 0.3s ease, color 0.3s ease;
+            pointer-events: none;
+        }
+
+        #works .work-item:nth-child(5):hover::after,
+        #home-works .work-item:nth-child(5):hover::after {
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+        }
+
+        #works .work-item:nth-child(6)::after,
+        #home-works .work-item:nth-child(6)::after {
+            content: 'Regional Revitalization';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 2;
+            transition: background 0.3s ease, color 0.3s ease;
+            pointer-events: none;
+        }
+
+        #works .work-item:nth-child(6):hover::after,
+        #home-works .work-item:nth-child(6):hover::after {
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
         }
 
         /* Section Navigation Links */
@@ -275,18 +529,137 @@
             transition: opacity 0.3s;
             position: relative;
             overflow: hidden;
+            min-height: 300px;
+            height: 100%;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: slideDown 1s ease-out forwards;
+            display: flex;
+            align-items: stretch;
+            margin: 0;
+            padding: 0;
+        }
+
+        #works .work-item:nth-child(1) {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            position: relative !important;
+            animation-delay: 0.2s;
+            height: 100% !important;
+        }
+
+        #works .work-item:nth-child(1) img {
+            object-fit: cover !important;
+            object-position: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+            max-width: none !important;
+            max-height: none !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+        }
+
+        #works .work-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        #works .work-item:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        #works .work-item:nth-child(4) {
+            animation-delay: 0.5s;
+        }
+
+        #works .work-item:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+
+        #works .work-item:nth-child(6) {
+            animation-delay: 0.7s;
+        }
+
+        #home-works .section-title {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.1s forwards;
+        }
+
+        #home-works .work-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        #home-works .work-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        #home-works .work-item:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        #home-works .work-item:nth-child(4) {
+            animation-delay: 0.5s;
+        }
+
+        #home-works .work-item:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+
+        #home-works .work-item:nth-child(6) {
+            animation-delay: 0.7s;
         }
 
         .work-item:hover {
             opacity: 0.7;
         }
 
-        .work-item img,
-        .work-item .work-placeholder {
+        .work-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        #works .work-item:nth-child(1) img,
+        #home-works .work-item:nth-child(1) img {
+            object-fit: cover !important;
+            object-position: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+            max-width: none !important;
+            max-height: none !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+        }
+
+        .work-item .work-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .work-item .work-placeholder {
@@ -345,6 +718,17 @@
             }
         }
 
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .modal-close {
             position: absolute;
             top: 1.5rem;
@@ -369,12 +753,14 @@
 
         .modal-image-container {
             width: 100%;
+            height: 500px;
             position: relative;
+            overflow: hidden;
         }
 
         .modal-image {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
@@ -396,15 +782,25 @@
         }
 
         .modal-text h3 {
-            font-size: 2rem;
-            font-weight: 400;
+            font-size: 1.8rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        #modalTitle {
+            font-size: 1.8rem !important;
+            font-weight: 700 !important;
+            color: #333 !important;
+            line-height: 1.2;
+            white-space: nowrap;
         }
 
         .modal-text .project-meta {
             font-size: 0.9rem;
-            color: #666;
+            color: #000000;
             margin-bottom: 2rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -436,31 +832,44 @@
 
         /* About Section - Paper Style */
         .about-section {
-            max-width: 1200px;
+            max-width: 100%;
+            width: 100%;
             margin: 0 auto;
             padding: 2rem;
             position: relative;
             z-index: 1;
-            background-color: #a5caf2;
+            background: transparent;
             min-height: 100vh;
-            overflow: hidden;
+            height: auto;
+            overflow: visible;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
         }
 
         .about-paper {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.12),
-                0 2px 8px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
             padding: 3rem;
             position: relative;
             z-index: 2;
-            overflow: hidden;
+            overflow: visible;
+            width: 2000px;
+            height: auto;
+            min-height: auto;
+            max-width: 2000px;
+            max-height: none;
+            margin: 1vh auto;
+            box-sizing: border-box;
+            display: block;
         }
 
         .about-paper::before {
@@ -481,30 +890,34 @@
 
         .about-layout {
             display: grid;
-            grid-template-columns: 35% 65%;
-            align-items: stretch;
+            grid-template-columns: 25% 75%;
+            align-items: start;
+            gap: 2rem;
+            height: 100%;
         }
 
         .about-left-column {
-            background: rgba(243, 244, 246, 0.95);
+            background: rgba(245, 245, 245, 0.7);
             backdrop-filter: blur(15px) saturate(150%);
             -webkit-backdrop-filter: blur(15px) saturate(150%);
             border-right: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 2.5rem 2rem;
-            color: #1f2937;
+            padding: 2.5rem;
+            color: #000000;
             display: flex;
             flex-direction: column;
-            border-radius: 10px 0 0 10px;
+            border-radius: 20px 0 0 20px;
             min-height: 100%;
         }
 
         .about-right-column {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2.5rem 2.5rem;
-            border-radius: 0 10px 10px 0;
+            background: rgba(220, 220, 220, 0.8);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            padding: 2.5rem;
             display: flex;
             flex-direction: column;
-            min-height: 100%;
+            gap: 2rem;
+            border-radius: 0 20px 20px 0;
         }
 
         .about-i-am {
@@ -522,82 +935,158 @@
         }
 
         .about-profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 10px;
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            border-radius: 0;
             object-fit: cover;
-            margin: 0 auto 1rem;
+            margin: 0 0 2rem 0;
             display: block;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            box-shadow: none;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out 0.2s forwards;
         }
 
         .about-name {
-            font-size: 3rem !important;
+            font-size: 2.2rem !important;
             font-weight: 700 !important;
-            color: #a2c4e8 !important;
-            text-align: right;
+            color: #194995 !important;
+            text-align: left;
             margin-bottom: 2rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             opacity: 0;
             transform: translateX(-50px);
-            animation: slideInLeft 1s ease-out 0.3s forwards;
+            animation: slideInLeft 1s ease-out 0.1s forwards;
         }
 
         .about-intro {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
-            color: #333;
+            margin-bottom: 0;
+            color: #000000;
             text-align: left;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.3s forwards;
+            max-width: 200px;
+        }
+
+        .about-intro strong {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .about-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out 0.4s forwards;
         }
 
-        .about-intro strong {
-            color: #333;
-            font-weight: 600;
+        .about-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #194995;
+            letter-spacing: 0.05em;
+        }
+
+        .about-info-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .about-info-row > * {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .about-info-row .about-skills-section:first-child {
+            margin-right: auto;
+            margin-left: -2rem;
+            flex: 0 0 auto;
+            min-width: auto;
+            padding-left: 0;
+        }
+
+        .about-info-row .about-right-section:first-child {
+            margin-right: auto;
+            margin-left: -2rem;
+            flex: 0 0 auto;
+            min-width: auto;
+            padding-left: 0;
         }
 
         .about-skills-section {
-            margin: 2rem 0;
+            margin: 0;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out forwards;
         }
 
-        .about-skills-section:nth-of-type(1) {
+        .about-info-row .about-skills-section:nth-of-type(1) {
             animation-delay: 0.5s;
         }
 
-        .about-skills-section:nth-of-type(2) {
+        .about-info-row .about-skills-section:nth-of-type(2) {
             animation-delay: 0.6s;
+        }
+
+        .about-info-row .about-contact {
+            animation-delay: 0.7s;
         }
 
         .about-skills-title {
             font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: #0066CC;
+            margin-bottom: 1.2rem;
+            color: #194995;
         }
 
         .about-skills-list {
             font-size: 0.85rem;
             line-height: 1.6;
-            color: #666;
+            color: #000000;
+        }
+
+        .about-skills-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.8rem;
+            width: 180px;
+        }
+
+        .skill-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #000000;
+            background: transparent;
+            flex-shrink: 0;
         }
 
         .about-language-list {
             font-size: 0.85rem;
             line-height: 1.8;
-            color: #666;
+            color: #000000;
             display: flex;
             flex-direction: row;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: flex-start;
             align-items: flex-start;
             flex-wrap: wrap;
@@ -607,33 +1096,33 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .language-circle {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            border: 2px solid #333;
+            border: 2px solid #000000;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
             font-weight: 600;
-            color: #333;
+            color: #000000;
             background: transparent;
             flex-shrink: 0;
         }
 
         .language-level {
             font-size: 0.7rem;
-            color: #666;
+            color: #000000;
             text-align: left;
             white-space: nowrap;
         }
 
         .about-contact {
-            margin-top: auto;
+            margin-top: 0;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out 0.7s forwards;
@@ -641,9 +1130,9 @@
 
         .about-contact-title {
             font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: #0066CC;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #194995;
         }
 
         .about-contact-item {
@@ -651,19 +1140,19 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 0.5rem;
+            color: #000000;
+            margin-bottom: 0.8rem;
         }
 
         .about-contact-item svg {
             width: 16px;
             height: 16px;
             flex-shrink: 0;
-            stroke: #666;
+            stroke: #ffffff;
         }
 
         .about-right-section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             flex: 1;
             opacity: 0;
             transform: translateX(-50px);
@@ -683,12 +1172,12 @@
         }
 
         .about-right-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #0066CC;
-            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #194995;
+            margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #0066CC;
+            border-bottom: 1px solid #000000;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out forwards;
@@ -703,9 +1192,9 @@
         }
 
         .about-right-content {
-            font-size: 0.9rem;
-            line-height: 1.8;
-            color: #333;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: #000000;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out forwards;
@@ -720,21 +1209,21 @@
         }
 
         .about-right-content strong {
-            color: #333;
+            color: #000000;
             font-weight: 600;
         }
 
         .about-right-content h4 {
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: #333;
+            color: #000000;
         }
 
         .about-right-content .meta {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
+            color: #000000;
+            margin-bottom: 0.8rem;
         }
 
         .about-right-content ul {
@@ -744,16 +1233,18 @@
         }
 
         .about-right-content li {
-            margin-bottom: 0.4rem;
-            padding-left: 1rem;
+            margin-bottom: 0.6rem;
+            padding-left: 0.8rem;
             position: relative;
+            font-size: 0.7rem;
+            line-height: 1.6;
         }
 
         .about-right-content li:before {
             content: "•";
             position: absolute;
             left: 0;
-            color: #666;
+            color: #cccccc;
         }
 
         /* Snow Effect for About Section */
@@ -798,98 +1289,6 @@
             }
         }
 
-        /* Future Section Snow Effect */
-        #future.section-content.active .future-snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .future-snowflake {
-            position: absolute;
-            top: -20px;
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1em;
-            font-family: Arial, sans-serif;
-            text-shadow: 
-                0 0 8px rgba(255, 255, 255, 0.9),
-                0 0 15px rgba(255, 255, 255, 0.7),
-                0 0 20px rgba(255, 255, 255, 0.5);
-            animation: futureSnowfall linear infinite;
-            user-select: none;
-            pointer-events: none;
-            will-change: transform;
-        }
-
-        @keyframes futureSnowfall {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 1;
-            }
-            50% {
-                transform: translateY(50vh) translateX(var(--drift)) rotate(180deg);
-            }
-            90% {
-                transform: translateY(calc(100vh - 100px)) translateX(calc(var(--drift) * 2)) rotate(360deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(calc(100vh - 80px)) translateX(calc(var(--drift) * 2)) rotate(360deg);
-                opacity: 0.8;
-            }
-        }
-
-        .snow-accumulation {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(to top, 
-                rgba(255, 255, 255, 1) 0%,
-                rgba(255, 255, 255, 0.98) 5%,
-                rgba(255, 255, 255, 0.92) 15%,
-                rgba(255, 255, 255, 0.8) 30%,
-                rgba(255, 255, 255, 0.65) 50%,
-                rgba(255, 255, 255, 0.45) 70%,
-                rgba(255, 255, 255, 0.25) 85%,
-                rgba(255, 255, 255, 0.1) 95%,
-                transparent 100%
-            );
-            pointer-events: none;
-            z-index: 1;
-            display: none;
-            clip-path: polygon(
-                0% 100%,
-                5% 95%,
-                12% 92%,
-                20% 88%,
-                28% 85%,
-                35% 82%,
-                42% 80%,
-                50% 78%,
-                58% 80%,
-                65% 82%,
-                72% 85%,
-                80% 88%,
-                88% 92%,
-                95% 95%,
-                100% 100%
-            );
-            box-shadow: 
-                0 -8px 30px rgba(255, 255, 255, 0.2),
-                inset 0 15px 40px rgba(255, 255, 255, 0.3);
-            filter: blur(1px);
-        }
-
-        #future.section-content.active .snow-accumulation {
-            display: block;
-        }
 
         /* Future Section - Timeline Style */
         .future-section {
@@ -899,50 +1298,74 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            background: linear-gradient(to bottom, #a5caf2 0%, #7db3e8 30%, #5a9dd6 60%, #367eba 100%);
+            background: transparent;
             min-height: 100vh;
-            overflow: hidden;
+            overflow: visible;
         }
 
 
         .future-paper {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.12),
-                0 2px 8px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 3rem;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
             position: relative;
             z-index: 2;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .future-timeline-container {
             display: flex !important;
             flex-direction: column !important;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 0;
+            margin-top: 0;
             align-items: stretch;
             width: 100%;
+            position: relative;
+            padding-left: 100px;
+        }
+
+        .future-timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(25, 73, 149, 0.3);
+            z-index: 1;
         }
 
         .timeline {
             position: relative;
-            background: rgba(243, 244, 246, 0.5);
-            padding: 0;
+            background: #f5f5f5;
+            padding: 2rem;
             border-radius: 8px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             min-width: 0;
             overflow: hidden;
             width: 100%;
-            align-items: stretch;
+            margin-bottom: 3rem;
+            margin-left: 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: -75px;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #194995;
+            border: 3px solid rgba(25, 73, 149, 0.3);
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .timeline:nth-child(1) .timeline-title {
@@ -982,26 +1405,26 @@
         }
 
         .timeline-images-container {
-            width: 200px;
-            min-width: 200px;
+            width: 100%;
+            min-width: 100%;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            flex-direction: row;
+            gap: 1rem;
             flex-shrink: 0;
             position: relative;
+            margin-bottom: 1.5rem;
         }
 
         .timeline:nth-child(2) .timeline-images-container,
         .timeline:nth-child(3) .timeline-images-container {
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 1rem 0;
         }
 
         .timeline-image-wrapper {
             position: relative;
-            width: 200px;
-            height: 150px;
+            width: 300px;
+            height: 200px;
             flex-shrink: 0;
         }
 
@@ -1018,13 +1441,13 @@
         }
 
         .timeline-image {
-            width: 200px;
-            height: 150px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideInLeft 1s ease-out 0.1s forwards;
+            opacity: 1;
+            transform: translateX(0);
+            border-radius: 8px;
         }
 
         .timeline-image-placeholder {
@@ -1043,7 +1466,7 @@
 
         .timeline-content {
             flex: 1;
-            padding: 1.5rem;
+            padding: 0;
             display: flex;
             flex-direction: column;
         }
@@ -1051,16 +1474,15 @@
         .timeline-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #0066CC;
+            color: #194995;
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             text-align: left;
             padding-bottom: 0.75rem;
-            border-bottom: 2px solid #0066CC;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideInLeft 1s ease-out forwards;
+            border-bottom: 2px solid rgba(25, 73, 149, 0.3);
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .timeline-item {
@@ -1075,24 +1497,22 @@
         .timeline-item h4 {
             font-size: 0.95rem;
             font-weight: 600;
-            color: #0066CC;
+            color: #333333;
             margin-bottom: 0.4rem;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideInLeft 1s ease-out forwards;
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .timeline-item-content {
             font-size: 0.85rem;
             line-height: 1.6;
-            color: #4b5563;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideInLeft 1s ease-out 0.4s forwards;
+            color: #666666;
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .timeline-item-content strong {
-            color: #0066CC;
+            color: #194995;
             font-weight: 600;
         }
 
@@ -1112,7 +1532,7 @@
             content: "•";
             position: absolute;
             left: 0;
-            color: #0066CC;
+            color: #194995;
             font-weight: bold;
         }
 
@@ -1190,7 +1610,7 @@
             font-size: 0.95rem;
             line-height: 1.8;
             font-weight: 300;
-            color: #666;
+            color: #000000;
         }
 
         .work-experience-list {
@@ -1225,7 +1645,7 @@
 
         .work-position {
             font-size: 0.95rem;
-            color: #666;
+            color: #000000;
             font-weight: 300;
         }
 
@@ -1326,7 +1746,7 @@
         .resume-main .experience-item .meta,
         .resume-main .education-item .meta {
             font-size: 0.9rem;
-            color: #666;
+            color: #000000;
             margin-bottom: 0.5rem;
         }
 
@@ -1419,14 +1839,251 @@
         }
 
         #about.section-content.active {
-            background-color: #a5caf2;
+            background: transparent;
+            overflow: visible;
+            min-height: 100vh;
+            height: auto;
+            position: relative;
+            width: 100%;
+            display: block !important;
+        }
+
+
+        #works.section-content.active {
+            background: transparent;
+        }
+
+        /* Hide works sliding section when About page is active */
+        body.about-active .works-sliding-section,
+        #about.section-content.active ~ .works-sliding-section {
+            display: none !important;
+        }
+
+        /* Hide works sliding section when Future page is active */
+        body.future-active .works-sliding-section,
+        #future.section-content.active ~ .works-sliding-section {
+            display: none !important;
+        }
+
+        /* Hide works sliding section when Works page is active */
+        body.works-active .works-sliding-section,
+        #works.section-content.active ~ .works-sliding-section {
+            display: none !important;
+        }
+
+        /* Home Navigation Sections */
+        .home-navigation-sections {
+            display: none !important;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #000000;
+        }
+
+        .home-future-section {
+            display: none !important;
+            padding: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #000000 0%, #2a2a2a 100%);
+            padding-bottom: 8rem;
+        }
+
+        .home-nav-box {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .home-nav-box:hover {
+            transform: scale(1.02);
+        }
+
+        .home-nav-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .home-nav-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .home-nav-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease;
+            z-index: 1;
+        }
+
+        .home-nav-box:hover .home-nav-overlay {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .home-nav-box:hover .home-nav-image {
+            transform: scale(1.1) rotate(2deg);
+            animation: crossAnimation 2s ease-in-out infinite;
+        }
+
+        .home-nav-title {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            color: #194995;
+            font-size: 2.5rem;
+            font-weight: 700;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .home-nav-box:hover .home-nav-title {
+            color: #ffffff;
+        }
+
+        @keyframes crossAnimation {
+            0%, 100% {
+                transform: scale(1.1) rotate(2deg);
+            }
+            50% {
+                transform: scale(1.15) rotate(-2deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home-navigation-sections {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+
+            .home-future-section {
+                padding: 2rem;
+            }
+
+            .home-nav-image-wrapper {
+                height: 300px;
+            }
+
+            .home-nav-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Works Sliding Columns Section */
+        .works-sliding-section {
+            padding: 4rem 2rem;
+            overflow: hidden;
+            position: relative;
+            background: transparent;
+        }
+
+        .works-sliding-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .works-sliding-column {
+            flex: 1;
+            position: relative;
+            height: 800px;
+            overflow: hidden;
+        }
+
+        .works-sliding-column-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            will-change: transform;
+        }
+
+        .works-sliding-column-1 .works-sliding-column-content {
+            animation: slideUpWorks 20s linear infinite !important;
+        }
+
+        .works-sliding-column-2 .works-sliding-column-content {
+            animation: slideDownWorks 20s linear infinite !important;
+        }
+
+        .works-sliding-box {
+            width: 100%;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .works-sliding-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .works-sliding-box:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        @keyframes slideUpWorks {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes slideDownWorks {
+            0% {
+                transform: translateY(-50%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .works-sliding-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .works-sliding-column {
+                height: 600px;
+            }
+
+            .works-sliding-box {
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo"><a href="#" style="text-decoration: none; color: inherit;">ICEY LIU</a></div>
+        <div class="logo"><a href="#" style="text-decoration: none; color: inherit;">PinYen Liu</a></div>
         <ul class="nav-links">
             <li><a href="#works">Works</a></li>
             <li><a href="#about">About</a></li>
@@ -1437,11 +2094,54 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>HELLO,<br>I'm Icey Liu.</h1>
-        <p class="subtitle">Graphic/ UIUX designer</p>
+        <p class="subtitle">Movie Editor / UIUX designer</p>
         <p class="tagline">Making experience better through meaningful and authentic design.</p>
-        <p class="description">
-            目前就讀於臺灣科技大學設計系，具備商業設計與影像媒體跨領域背景，在學期間深耕透過 AI 驅動數據洞察與自動化工作流，重構品牌核心競爭力。現以基隆老店第四代身份，致力於將體驗戰略與AI導入傳產轉型，憑藉跨世代溝通的專長引導共識，正在實現文化傳承到智能轉型的品牌復興。
-        </p>
+        <div class="hero-feature-works" onclick="scrollToWorks()">
+            <span class="hero-feature-arrow">▼</span>
+            <span class="hero-feature-text">Feature works</span>
+        </div>
+    </section>
+
+    <!-- Works Sliding Columns Section -->
+    <section class="works-sliding-section">
+        <div class="works-sliding-container">
+            <!-- Left Column: Slides Up -->
+            <div class="works-sliding-column works-sliding-column-1">
+                <div class="works-sliding-column-content" style="animation: slideUpWorks 20s linear infinite !important;">
+                    <div class="works-sliding-box"><img src="../全家福2.png" alt="作品 1" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../貓頭.jpg" alt="作品 2" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../截圖 2026-01-15 下午3.25.25.png" alt="作品 3" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-4.png" alt="作品 4" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-5.png" alt="作品 5" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-6.png" alt="作品 6" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="works-sliding-box"><img src="../全家福2.png" alt="作品 1" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../貓頭.jpg" alt="作品 2" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../截圖 2026-01-15 下午3.25.25.png" alt="作品 3" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-4.png" alt="作品 4" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-5.png" alt="作品 5" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-6.png" alt="作品 6" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                </div>
+            </div>
+            <!-- Right Column: Slides Down -->
+            <div class="works-sliding-column works-sliding-column-2">
+                <div class="works-sliding-column-content" style="animation: slideDownWorks 20s linear infinite !important; transform: translateY(-50%);">
+                    <div class="works-sliding-box"><img src="../全家福2.png" alt="作品 1" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../貓頭.jpg" alt="作品 2" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../截圖 2026-01-15 下午3.25.25.png" alt="作品 3" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-4.png" alt="作品 4" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-5.png" alt="作品 5" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-6.png" alt="作品 6" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="works-sliding-box"><img src="../全家福2.png" alt="作品 1" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../貓頭.jpg" alt="作品 2" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../截圖 2026-01-15 下午3.25.25.png" alt="作品 3" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-4.png" alt="作品 4" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-5.png" alt="作品 5" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <div class="works-sliding-box"><img src="../works-6.png" alt="作品 6" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Home Works Grid - Hidden by default -->
@@ -1449,47 +2149,46 @@
         <h2 class="section-title">Works</h2>
         <div class="home-works-grid">
             <div class="work-item" data-work="1">
-                <div class="work-placeholder">作品 1</div>
+                <img src="../全家福2.png" alt="作品 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 1</div>
             </div>
             <div class="work-item" data-work="2">
-                <div class="work-placeholder">作品 2</div>
+                <img src="../貓頭.jpg" alt="作品 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 2</div>
             </div>
             <div class="work-item" data-work="3">
-                <div class="work-placeholder">作品 3</div>
-            </div>
-            <div class="work-item" data-work="4">
-                <div class="work-placeholder">作品 4</div>
-            </div>
-            <div class="work-item" data-work="5">
-                <div class="work-placeholder">作品 5</div>
-            </div>
-            <div class="work-item" data-work="6">
-                <div class="work-placeholder">作品 6</div>
+                <img src="../截圖 2026-01-15 下午3.25.25.png" alt="作品 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 3</div>
             </div>
         </div>
     </section>
 
     <!-- Works Section -->
     <section id="works" class="section-content">
-        <h2 class="section-title">Works</h2>
         <div class="works-grid">
-            <div class="work-item" data-work="1">
-                <div class="work-placeholder">作品 1</div>
+            <div class="work-item" data-work="1" style="overflow: hidden !important; position: relative !important;">
+                <img src="../全家福2.png" alt="作品 1" style="width: 100% !important; height: 100% !important; object-fit: cover !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; margin: 0 !important; padding: 0 !important; display: block !important;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 1</div>
             </div>
             <div class="work-item" data-work="2">
-                <div class="work-placeholder">作品 2</div>
+                <img src="../貓頭.jpg" alt="作品 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 2</div>
             </div>
             <div class="work-item" data-work="3">
-                <div class="work-placeholder">作品 3</div>
+                <img src="../截圖 2026-01-15 下午3.25.25.png" alt="作品 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 3</div>
             </div>
             <div class="work-item" data-work="4">
-                <div class="work-placeholder">作品 4</div>
+                <img src="../works-4.png" alt="作品 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 4</div>
             </div>
             <div class="work-item" data-work="5">
-                <div class="work-placeholder">作品 5</div>
+                <img src="../works-5.png" alt="作品 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 5</div>
             </div>
             <div class="work-item" data-work="6">
-                <div class="work-placeholder">作品 6</div>
+                <img src="../works-6.png" alt="作品 6" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="work-placeholder" style="display: none;">作品 6</div>
             </div>
         </div>
     </section>
@@ -1520,72 +2219,82 @@
             <div class="snow-container" id="snowContainer"></div>
             <div class="about-paper">
                 <div class="about-layout">
-                    <!-- Left Column: Grey Background -->
+                    <!-- Left Column: Name, Photo, Introduction -->
                     <div class="about-left-column">
-                        <!-- I'M Text -->
-                        <div class="about-i-am">I'M</div>
+                        <!-- Name Text -->
+                        <div class="about-name">Icey Liu</div>
                         
                         <!-- Profile Picture -->
                         <img 
-                            src="../profile-photo.png" 
+                            src="../profile-photo.jpg" 
                             alt="劉品姸 Icey Liu"
                             class="about-profile-img"
                             onerror="this.src='https://via.placeholder.com/200/f3f4f6/6b7280?text=Photo'"
                         >
                         
-                        <!-- Name Text -->
-                        <div class="about-name">ICEY</div>
+                        <!-- Tags -->
+                        <div class="about-tags">
+                            <div class="about-tag">#Service Design</div>
+                            <div class="about-tag">#Commercial Design</div>
+                            <div class="about-tag">#Film editor</div>
+                        </div>
                         
                         <!-- Self Introduction -->
                         <div class="about-intro">
-                            目前就讀於<strong>臺灣科技大學設計系</strong>，具備<strong>商業設計</strong>與<strong>影像媒體</strong>跨領域背景，在學期間深耕透過 AI 驅動數據洞察與自動化工作流，重構品牌核心競爭力。<br><br>
-                            現以<strong>基隆老店第四代</strong>身份，致力於將體驗戰略與AI導入傳產轉型，憑藉跨世代溝通的專長引導共識，正在實現文化傳承到智能轉型的品牌復興。
+                            目前就讀於<strong>臺灣科技大學設計系</strong>，具備<strong>商業設計</strong>與<strong>影像媒體</strong>的跨領域背景。正透過 AI 輔助開發高齡者咀嚼吞嚥困難的產品開發專案，透過 AI 輔助優化 UI/UX 評估流程，為高齡醫療照護提供更精準的設計解決方案。
+                        </div>
                         </div>
                         
-                        <!-- Language Proficiency -->
-                        <div class="about-skills-section">
-                            <div class="about-skills-title">語言能力｜Language Proficiency</div>
-                            <div class="about-language-list">
-                                <div class="about-language-item">
-                                    <div class="language-circle">英文</div>
-                                    <div class="language-level">IELTS 6.0</div>
-                                </div>
-                                <div class="about-language-item">
-                                    <div class="language-circle">日文</div>
-                                    <div class="language-level">N4</div>
-                                </div>
-                                <div class="about-language-item">
-                                    <div class="language-circle">韓文</div>
-                                    <div class="language-level">TOPIK II 3級</div>
-                                </div>
-                            </div>
-                        </div>
-                        
+                    <!-- Right Column: Skills, Languages, Contact, Work Experience, Education -->
+                    <div class="about-right-column">
+                        <!-- Skills, Language, Contact in one row -->
+                        <div class="about-info-row">
                         <!-- Skills -->
                         <div class="about-skills-section">
-                            <div class="about-skills-title">專業技能 | Skills</div>
-                            <div class="about-skills-list">
-                                Illustrator, Photoshop, Indesign, After Effects, Premiere, Lightroom, Figma
+                            <div class="about-skills-title">Skills</div>
+                                <div class="about-skills-icons">
+                                    <div class="skill-circle">AI</div>
+                                    <div class="skill-circle">PS</div>
+                                    <div class="skill-circle">ID</div>
+                                    <div class="skill-circle">AE</div>
+                                    <div class="skill-circle">PR</div>
+                                    <div class="skill-circle">Figma</div>
                             </div>
                         </div>
                         
-                        <!-- Contact -->
-                        <div class="about-contact">
-                            <div class="about-contact-title">聯絡資訊 | Contact</div>
-                            <div class="about-contact-item">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                                <span>iceyen37@gmail.com</span>
+                            <!-- Language Proficiency -->
+                            <div class="about-skills-section">
+                                <div class="about-skills-title">Languages</div>
+                                <div class="about-language-list">
+                                    <div class="about-language-item">
+                                        <div class="language-circle">英文</div>
+                                        <div class="language-level">IELTS 6.0</div>
+                            </div>
+                                    <div class="about-language-item">
+                                        <div class="language-circle">日文</div>
+                                        <div class="language-level">N4</div>
+                            </div>
+                                    <div class="about-language-item">
+                                        <div class="language-circle">韓文</div>
+                                        <div class="language-level">TOPIK II 3級</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Right Column: White Background -->
-                    <div class="about-right-column">
+                            <!-- Contact -->
+                            <div class="about-contact">
+                                <div class="about-contact-title">Contact</div>
+                                <div class="about-contact-item">
+                                    <span>iceyen37@gmail.com</span>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Work Experience and Education in one row -->
+                        <div class="about-info-row">
                         <!-- Work Experience -->
                         <div class="about-right-section">
-                            <h3 class="about-right-title">工作經驗｜Work Experience</h3>
+                                <h3 class="about-right-title">Work Experience</h3>
                             <div class="about-right-content">
                                 <h4>視覺剪輯師</h4>
                                 <div class="meta">理財週刊 | 2023.07 - 2024.12</div>
@@ -1595,7 +2304,7 @@
                                     <li>陳秀芳、張大文分析師 頻道視覺設計、拍攝、剪輯</li>
                                 </ul>
                             </div>
-                            <div class="about-right-content" style="margin-top: 1.5rem;">
+                                <div class="about-right-content" style="margin-top: 0.6rem;">
                                 <h4>影片剪輯師</h4>
                                 <div class="meta">Playground Wedding 美式婚禮動態 / 平面攝影團隊 | 2022.09 - 2023.05</div>
                                 <ul>
@@ -1604,7 +2313,7 @@
                                     <li>廣告商業影片剪輯</li>
                                 </ul>
                             </div>
-                            <div class="about-right-content" style="margin-top: 1.5rem;">
+                                <div class="about-right-content" style="margin-top: 0.6rem;">
                                 <h4>UI / UX 設計實習生</h4>
                                 <div class="meta">MING ISLAND BRANDING 品牌顧問公司 | 2021.06 - 2021.09</div>
                                 <ul>
@@ -1614,26 +2323,27 @@
                             </div>
                         </div>
                         
-                        <!-- Education -->
+                            <!-- Education -->
                         <div class="about-right-section">
-                            <h3 class="about-right-title">在學經歷｜Education</h3>
+                                <h3 class="about-right-title">Education</h3>
                             <div class="about-right-content">
-                                <h4>臺灣科技大學</h4>
-                                <div class="meta">商業設計系 | 2025 - 至今</div>
-                                <ul>
-                                    <li>2025 青年社區參與行動2.0 Changemaker計畫 Actor組 金獎</li>
-                                </ul>
-                            </div>
-                            <div class="about-right-content" style="margin-top: 1.5rem;">
-                                <h4>銘傳大學</h4>
-                                <div class="meta">商業設計系 | 2018 - 2022</div>
-                                <ul>
-                                    <li>2022 放視大賞 平面類傳達設計組 入圍</li>
-                                    <li>2022 新一代設計展 平面類傳達設計組 入圍</li>
-                                </ul>
+                                    <h4>臺灣科技大學</h4>
+                                    <div class="meta">商業設計系 | 2025 - 至今</div>
+                                    <ul>
+                                        <li>2025 青年社區參與行動2.0 Changemaker計畫 Actor組 金獎</li>
+                                    </ul>
+                                </div>
+                                <div class="about-right-content" style="margin-top: 0.6rem;">
+                                    <h4>銘傳大學</h4>
+                                    <div class="meta">商業設計系 | 2018 - 2022</div>
+                                    <ul>
+                                        <li>2022 放視大賞 平面類傳達設計組 入圍</li>
+                                        <li>2022 新一代設計展 平面類傳達設計組 入圍</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                            </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1642,13 +2352,7 @@
     <!-- Future Section -->
     <section id="future" class="section-content">
         <div class="future-section" id="futureSection">
-            <!-- Snow Container for Future -->
-            <div class="future-snow-container" id="futureSnowContainer"></div>
-            <!-- Snow Accumulation at Bottom -->
-            <div class="snow-accumulation"></div>
             <div class="future-paper">
-                <h2 class="section-title">Goals</h2>
-                
                 <div class="future-timeline-container">
                     <!-- Timeline 1: 任務指標 -->
                     <div class="timeline">
@@ -1898,6 +2602,22 @@
                         heroSection.style.display = 'flex';
                     }
                     
+                    // Show works sliding section
+                    const worksSlidingSection = document.querySelector('.works-sliding-section');
+                    if (worksSlidingSection) {
+                        worksSlidingSection.style.display = 'block';
+                    }
+                    
+                    // Show home navigation sections
+                    const homeNavSections = document.querySelector('.home-navigation-sections');
+                    if (homeNavSections) {
+                        homeNavSections.style.display = 'none';
+                    }
+                    const homeFutureSection = document.querySelector('.home-future-section');
+                    if (homeFutureSection) {
+                        homeFutureSection.style.display = 'none';
+                    }
+                    
                     const homeWorks = document.getElementById('home-works');
                     if (homeWorks) {
                         homeWorks.style.display = 'none';
@@ -1908,9 +2628,13 @@
                         section.classList.remove('active');
                     });
                     
-                    // Remove about-active and future-active class from body
+                    // Remove about-active, future-active, and works-active class from body and html
                     document.body.classList.remove('about-active');
+                    document.documentElement.classList.remove('about-active');
                     document.body.classList.remove('future-active');
+                    document.documentElement.classList.remove('future-active');
+                    document.body.classList.remove('works-active');
+                    document.documentElement.classList.remove('works-active');
                     
                     // Update URL without hash
                     window.history.pushState('', '', window.location.pathname);
@@ -1931,10 +2655,26 @@
                             heroSection.style.display = 'none';
                         }
                         
+                        // Hide home navigation sections
+                        const homeNavSections = document.querySelector('.home-navigation-sections');
+                        if (homeNavSections) {
+                            homeNavSections.style.display = 'none';
+                        }
+                        const homeFutureSection = document.querySelector('.home-future-section');
+                        if (homeFutureSection) {
+                            homeFutureSection.style.display = 'none';
+                        }
+                        
                         // Hide home works section
                         const homeWorks = document.getElementById('home-works');
                         if (homeWorks) {
                             homeWorks.style.display = 'none';
+                        }
+                        
+                        // Hide works sliding section when navigating to About or Future page
+                        const worksSlidingSection = document.querySelector('.works-sliding-section');
+                        if (worksSlidingSection && (targetSection.id === 'about' || targetSection.id === 'future' || targetSection.id === 'works')) {
+                            worksSlidingSection.style.display = 'none';
                         }
                         
                         // Hide all section-content sections (including Future, Resume)
@@ -1945,16 +2685,35 @@
                         // Show only target section
                         targetSection.classList.add('active');
                         
-                        // Set body background for About and Future pages
+                        // Set body background for About, Future, and Works pages
                         if (targetId === 'about') {
                             document.body.classList.add('about-active');
+                            document.documentElement.classList.add('about-active');
                             document.body.classList.remove('future-active');
+                            document.documentElement.classList.remove('future-active');
+                            document.body.classList.remove('works-active');
+                            document.documentElement.classList.remove('works-active');
                         } else if (targetId === 'future') {
                             document.body.classList.add('future-active');
+                            document.documentElement.classList.add('future-active');
                             document.body.classList.remove('about-active');
+                            document.documentElement.classList.remove('about-active');
+                            document.body.classList.remove('works-active');
+                            document.documentElement.classList.remove('works-active');
+                        } else if (targetId === 'works') {
+                            document.body.classList.add('works-active');
+                            document.documentElement.classList.add('works-active');
+                            document.body.classList.remove('about-active');
+                            document.documentElement.classList.remove('about-active');
+                            document.body.classList.remove('future-active');
+                            document.documentElement.classList.remove('future-active');
                     } else {
                             document.body.classList.remove('about-active');
+                            document.documentElement.classList.remove('about-active');
                             document.body.classList.remove('future-active');
+                            document.documentElement.classList.remove('future-active');
+                            document.body.classList.remove('works-active');
+                            document.documentElement.classList.remove('works-active');
                         }
                         
                         // Scroll to top of page first
@@ -2016,6 +2775,16 @@
                         heroSection.style.display = 'none';
                     }
                     
+                    // Hide home navigation sections
+                    const homeNavSections = document.querySelector('.home-navigation-sections');
+                    if (homeNavSections) {
+                        homeNavSections.style.display = 'none';
+                    }
+                    const homeFutureSection = document.querySelector('.home-future-section');
+                    if (homeFutureSection) {
+                        homeFutureSection.style.display = 'none';
+                    }
+                    
                     // Hide home works section
                     if (homeWorks) {
                         homeWorks.style.display = 'none';
@@ -2027,13 +2796,37 @@
                     // Set body background for About and Future pages
                     if (hash === 'about') {
                         document.body.classList.add('about-active');
+                        document.documentElement.classList.add('about-active');
                         document.body.classList.remove('future-active');
+                        document.documentElement.classList.remove('future-active');
+                        document.body.classList.remove('works-active');
+                        document.documentElement.classList.remove('works-active');
                     } else if (hash === 'future') {
                         document.body.classList.add('future-active');
+                        document.documentElement.classList.add('future-active');
                         document.body.classList.remove('about-active');
-                    } else {
+                        document.documentElement.classList.remove('about-active');
+                        document.body.classList.remove('works-active');
+                        document.documentElement.classList.remove('works-active');
+                    } else if (hash === 'works') {
+                        document.body.classList.add('works-active');
+                        document.documentElement.classList.add('works-active');
                         document.body.classList.remove('about-active');
+                        document.documentElement.classList.remove('about-active');
                         document.body.classList.remove('future-active');
+                        document.documentElement.classList.remove('future-active');
+                    } else {
+                        // No hash, show home page with works sliding section
+                        const worksSlidingSection = document.querySelector('.works-sliding-section');
+                        if (worksSlidingSection) {
+                            worksSlidingSection.style.display = 'block';
+                        }
+                        document.body.classList.remove('about-active');
+                        document.documentElement.classList.remove('about-active');
+                        document.body.classList.remove('future-active');
+                        document.documentElement.classList.remove('future-active');
+                        document.body.classList.remove('works-active');
+                        document.documentElement.classList.remove('works-active');
                     }
                     
                     // Scroll to top
@@ -2043,6 +2836,20 @@
                     if (heroSection) {
                         heroSection.style.display = 'flex';
                     }
+                    // Show works sliding section
+                    const worksSlidingSection = document.querySelector('.works-sliding-section');
+                    if (worksSlidingSection) {
+                        worksSlidingSection.style.display = 'block';
+                    }
+                    // Show home navigation sections
+                    const homeNavSections = document.querySelector('.home-navigation-sections');
+                    if (homeNavSections) {
+                        homeNavSections.style.display = 'none';
+                    }
+                    const homeFutureSection = document.querySelector('.home-future-section');
+                    if (homeFutureSection) {
+                        homeFutureSection.style.display = 'none';
+                    }
                     if (homeWorks) {
                         homeWorks.style.display = 'none';
                     }
@@ -2051,6 +2858,15 @@
                 // No hash or invalid hash, show hero only
                 if (heroSection) {
                     heroSection.style.display = 'flex';
+                }
+                // Show home navigation sections
+                const homeNavSections = document.querySelector('.home-navigation-sections');
+                if (homeNavSections) {
+                    homeNavSections.style.display = 'none';
+                }
+                const homeFutureSection = document.querySelector('.home-future-section');
+                if (homeFutureSection) {
+                    homeFutureSection.style.display = 'none';
                 }
                 if (homeWorks) {
                     homeWorks.style.display = 'none';
@@ -2179,102 +2995,31 @@
         setInterval(checkAboutVisibility, 1000);
 
         // Snow Effect for Future Section
-        function createFutureSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.className = 'future-snowflake';
-            snowflake.innerHTML = '❄';
-            
-            // Random size between 0.6em and 1.8em (slightly larger)
-            const size = Math.random() * 1.2 + 0.6;
-            snowflake.style.fontSize = size + 'em';
-            
-            // Random starting position
-            snowflake.style.left = Math.random() * 100 + '%';
-            
-            // Random drift (horizontal movement)
-            const drift = (Math.random() - 0.5) * 200;
-            snowflake.style.setProperty('--drift', drift + 'px');
-            
-            // Random animation duration between 12s and 25s (slower)
-            const duration = Math.random() * 13 + 12;
-            snowflake.style.animationDuration = duration + 's';
-            
-            // Random delay
-            snowflake.style.animationDelay = Math.random() * 5 + 's';
-            
-            // Initial position from top
-            snowflake.style.top = '-20px';
-            
-            // Add shadow for depth
-            snowflake.style.filter = 'drop-shadow(0 0 5px rgba(255, 255, 255, 0.9))';
-            
-            return snowflake;
-        }
 
-        let futureSnowInterval = null;
-        
-        function initFutureSnowEffect() {
-            const futureSection = document.getElementById('futureSection');
-            const futureSnowContainer = document.getElementById('futureSnowContainer');
-            const futurePage = document.getElementById('future');
-            
-            if (!futureSection || !futureSnowContainer || !futurePage) return;
-            
-            // Only run if Future page is active
-            if (!futurePage.classList.contains('active')) return;
-            
-            // Clear existing snowflakes and interval
-            futureSnowContainer.innerHTML = '';
-            if (futureSnowInterval) {
-                clearInterval(futureSnowInterval);
+        // Force hide home navigation sections on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const homeNavSections = document.querySelector('.home-navigation-sections');
+            if (homeNavSections) {
+                homeNavSections.style.display = 'none';
+                homeNavSections.remove();
             }
-            
-            // Create initial snowflakes
-            const snowflakeCount = 100;
-            for (let i = 0; i < snowflakeCount; i++) {
-                const snowflake = createFutureSnowflake();
-                futureSnowContainer.appendChild(snowflake);
+            const homeFutureSection = document.querySelector('.home-future-section');
+            if (homeFutureSection) {
+                homeFutureSection.style.display = 'none';
+                homeFutureSection.remove();
             }
-            
-            // Continuously add new snowflakes
-            futureSnowInterval = setInterval(() => {
-                if (futurePage.classList.contains('active')) {
-                    const snowflake = createFutureSnowflake();
-                    futureSnowContainer.appendChild(snowflake);
-                    
-                    // Remove snowflake after animation
-                    setTimeout(() => {
-                        if (snowflake.parentNode) {
-                            snowflake.parentNode.removeChild(snowflake);
-                        }
-                    }, 35000);
-                } else {
-                    clearInterval(futureSnowInterval);
-                    futureSnowInterval = null;
+        });
+
+        // Home Navigation Boxes - Click handlers
+        document.querySelectorAll('.home-nav-box').forEach(box => {
+            box.addEventListener('click', function() {
+                const section = this.getAttribute('data-section');
+                if (section) {
+                    const targetLink = document.querySelector(`a[href="#${section}"]`);
+                    if (targetLink) {
+                        targetLink.click();
+                    }
                 }
-            }, 250);
-        }
-
-        // Check when Future section becomes visible
-        const checkFutureVisibility = () => {
-            const futurePage = document.getElementById('future');
-            if (futurePage && futurePage.classList.contains('active')) {
-                const futureSnowContainer = document.getElementById('futureSnowContainer');
-                if (futureSnowContainer && futureSnowContainer.children.length === 0) {
-                    initFutureSnowEffect();
-                }
-            }
-        };
-
-        // Check periodically if Future section is visible
-        setInterval(checkFutureVisibility, 1000);
-
-        // Also check when navigating to Future
-        document.querySelectorAll('a[href="#future"]').forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(() => {
-                    initFutureSnowEffect();
-                }, 200);
             });
         });
 
@@ -2309,46 +3054,52 @@
             const workData = {
                 '1': {
                     title: '專案標題 1',
-                    meta: '專案類型 / 2024',
-                    image: 'images/work1.jpg', // 您可以替換為實際圖片路徑
-                    description: '<p>這裡是專案 1 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                    meta: '白鶴 小百合純米濁酒 包裝設計',
+                    image: '../修圖8.png',
+                    description: '<p>以白鶴象徵純潔與重生，描繪黎明時鶴舞曙光的詩意瞬間。包裝以杏粉與朝霞金的漸層為主調，展現春日光影的柔和流動。流線構圖與留白設計呼應濁酒的透明感，櫻花花瓣與羽翼的層次營造出若隱若現的空氣感。整體設計融合日本文化的靜謐與現代清新，讓包裝成為關於春光、生命與純淨的詩意展演。</p>'
                 },
                 '2': {
                     title: '專案標題 2',
-                    meta: '專案類型 / 2024',
-                    image: 'images/work2.jpg',
-                    description: '<p>這裡是專案 2 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                    meta: '炭吉喵 好運彈珠台存錢筒',
+                    image: '../投錢2.jpg',
+                    description: '<p>以亮黑色打造象徵富貴和避邪的「炭吉喵」，如同吸收晦氣、轉化好運的守護符。特殊顏色設計加上俏皮的神韻，無論擺放於桌上或床邊，都能讓人瞬間提升氛圍與財氣，是一份結合美感與開運能量的新年禮物。</p>'
                 },
                 '3': {
                     title: '專案標題 3',
-                    meta: '專案類型 / 2024',
-                    image: 'images/work3.jpg',
-                    description: '<p>這裡是專案 3 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                    meta: 'Knock Knock 交友軟體',
+                    image: '../截圖 2026-01-15 下午3.29.44.png',
+                    description: '<p>打造一個以「虛擬的家」為概念、以價值觀為核心的療癒系交友空間，跳脫傳統交友平台過度外貌導向、聊天無效與情感快速消耗的問題，滿足現代人追求情緒支持與慢生活的需求。</p>'
                 },
                 '4': {
-                    title: '專案標題 4',
-                    meta: '專案類型 / 2024',
-                    image: 'images/work4.jpg',
-                    description: '<p>這裡是專案 4 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                    title: '《隔窗有耳》',
+                    meta: 'Short film / 2024',
+                    image: '../works-4-1.png',
+                    description: '<p>碰啪一聲，扎實撞擊下有隻五色鳥躺在路邊掙扎，站在透亮大片玻璃窗旁注視著一切的鳥類攝影師-猶瑞，遇見前來記錄鳥兒撞擊玻璃事件的研究者-黎可。兩位舊識再次重逢後，在自然環境的寂然下，映照出多年情感的矛盾，卻也更加聽見彼此內心的喧囂。</p>'
                 },
                 '5': {
-                    title: '專案標題 5',
-                    meta: '專案類型 / 2024',
-                    image: 'images/work5.jpg',
-                    description: '<p>這裡是專案 5 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                    title: 'i-UGR無線優格機',
+                    meta: 'Product Redesign / 2024',
+                    image: '../works-5-1.png',
+                    description: '<p>人的一天24小時中，有8小時在睡覺、8小時在上班，剩下的8小時是寶貴的休息時間。下班已經筋疲力盡的我們，需要來一場時空旅行來跳脫日常。在休息片刻，只要打開i-URG就像開啟時光膠囊，從膠囊中拿出一杯自製的優格，優格觸碰到舌尖的那一刻，又掉入了另一個優格的時空。</p>'
                 },
                 '6': {
-                    title: '專案標題 6',
-                    meta: '專案類型 / 2024',
-                    image: 'images/work6.jpg',
-                    description: '<p>這裡是專案 6 的詳細描述。您可以修改這個內容來描述您的專案。</p><p>描述專案的背景、目標、設計過程和成果。</p>'
+                    title: '暖暖源遠 暖步圖',
+                    meta: 'Regional Revitalization / 2024',
+                    image: '../works-6-1.png',
+                    description: '<p>位於基隆暖暖河濱步道，舉辦攜帶老人散步的活動，帶入他們對宗教的信仰，傳遞正確的物理治療觀念。讓散步不只是散步，腳步裡藏著知識與故事。</p>'
                 }
             };
 
             const data = workData[workId] || workData['1'];
             
+            // For work 1, 2, 3, show meta as title
+            if (workId === '1' || workId === '2' || workId === '3') {
+                document.getElementById('modalTitle').textContent = data.meta;
+                document.getElementById('modalMeta').textContent = '';
+            } else {
             document.getElementById('modalTitle').textContent = data.title;
             document.getElementById('modalMeta').textContent = data.meta;
+            }
             document.getElementById('modalDescription').innerHTML = data.description;
             
             const modalImage = document.getElementById('modalImage');
@@ -2376,6 +3127,13 @@
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function scrollToWorks() {
+            const worksSection = document.querySelector('.works-sliding-section');
+            if (worksSection) {
+                worksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     </script>
 </body>
